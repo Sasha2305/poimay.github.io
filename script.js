@@ -65,7 +65,9 @@ function gmyack(str,stl){//при щелчке по мячику проверя�
         if(vol==1){soundStartNep();}
     }        
         idimg=document.getElementById("a"+stroka+stolb);
+        idimg.style.height="65px";
         idimg.src="img/babah.gif";
+
     }
     if(cl>=15){//15 очков - победа
         a.innerHTML="Победа!"
