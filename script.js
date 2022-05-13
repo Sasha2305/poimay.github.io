@@ -3,8 +3,31 @@ var stolb=1;
 var cl=0;//баллы
 var straf=0;//штрафы
 var time=60;//время
+var vol=1;
 but=["img/button.png","img/button2.png","img/button3.png","img/bonuse_2b.png","img/bonuse_3s.png","img/b_-2.png","img/s_-3.png",
 "img/button.png","img/button2.png","img/button3.png","img/bonuse_3s.png","img/s_-3.png"]
+function soundStartNep() {
+    audio=new Audio();
+    audio.src="aud/nepr.mp3";
+    audio.autoplay=true;
+    
+}
+function soundStartPrav() {
+    audio=new Audio();
+    audio.src="aud/pravilno.mp3";
+    audio.autoplay=true;
+    
+}
+function snd(){
+    if(vol==1){
+        vkl.src="img/wikl.png";
+        vol=0;
+    }else if(vol==0){
+        vkl.src="img/wkl.png"
+        vol=1;
+    }
+}
+
 function go(){//генерируем случайный мячик из массива в случайном положении
     idimg=document.getElementById("a"+stroka+stolb);
     idimg.src="img/spacer.gif";
@@ -19,21 +42,27 @@ function gmyack(str,stl){//при щелчке по мячику проверя�
         if(butRnd==0||butRnd==7){//добавляем балл, если щёлкнули по правильному мячику
         cl++;
         a.innerHTML="Попал: "+cl;
-        }else if(butRnd==3){//добавляем два балла, если щёлкнули по мячику +2б
+        if(vol==1){soundStartPrav();}
+    }else if(butRnd==3){//добавляем два балла, если щёлкнули по мячику +2б
         cl=cl+2;
         a.innerHTML="Попал: "+cl;
+        if(vol==1){soundStartPrav();}
         }else if(butRnd==4||butRnd==10){//добавляем 3 секунды, если щёлкнули по мячику +3с
            time=time+3;
            c.innerHTML="Время: "+time;
+           if(vol==1){soundStartPrav();}
         }else if(butRnd==6||butRnd==11){//убавляем 3 секунды, если щёлкнули по мячику -3с
             time=time-3;
             c.innerHTML="Время: "+time;
+            if(vol==1){soundStartNep();}
         }else if(butRnd==5){//убавляем два балла, если щёлкнули по мячику -2б
         cl=cl-2;
         a.innerHTML="Попал: "+cl;
+        if(vol==1){soundStartNep();}
         }else{
         straf++;
         b.innerHTML="Штраф: "+straf;//в остальных случаях добавляем штрафное очко
+        if(vol==1){soundStartNep();}
     }        
         idimg=document.getElementById("a"+stroka+stolb);
         idimg.src="img/babah.gif";
